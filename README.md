@@ -10,6 +10,14 @@
   
 ### Enumeration
   
+#### Seatbelt
+  
+https://github.com/GhostPack/Seatbelt
+  
+Sample usage:
+  
+> beacon> execute-assembly C:\Tools\Seatbelt\Seatbelt\bin\Debug\Seatbelt.exe -group=system
+  
 #### SharpUp
 
 https://github.com/GhostPack/SharpUp
