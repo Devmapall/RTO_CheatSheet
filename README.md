@@ -129,6 +129,10 @@ add firewall rule:
 
 ## GPO Abuse
   
+HINT:
+  
+> Worked best, to install the module with a local admin, that is NOT the domain user (on the same machine) who is allowed to create and update the GPO
+  
 Check if Module is installed:
   
 > beacon> powershell Get-Module -List -Name GroupPolicy | select -expand ExportedCommands
